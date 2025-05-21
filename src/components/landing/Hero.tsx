@@ -1,0 +1,94 @@
+
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+
+const Hero = () => {
+  return (
+    <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-20">
+        <div className="flex-1 space-y-6">
+          <div className="inline-block">
+            <span className="bg-purple-100 text-purple-700 py-1 px-3 rounded-full text-sm font-medium">
+              Digital Finance Hub
+            </span>
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            Your Ultimate <span className="text-primary">Digital Payment</span> Platform
+          </h1>
+          <p className="text-lg text-gray-600 md:pr-10">
+            UNI-PAY combines payments, chat, shopping, and analytics into one seamless digital experience. 
+            Manage finances, connect with others, and shop all in one secure platform.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <Button size="lg" asChild>
+              <Link to="/register">Get Started</Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <Link to="/#learn-more">Learn More</Link>
+            </Button>
+          </div>
+          <div className="flex items-center space-x-2 pt-2">
+            <div className="flex -space-x-2">
+              {[1, 2, 3, 4].map((i) => (
+                <div 
+                  key={i} 
+                  className="h-8 w-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center overflow-hidden"
+                >
+                  <span className="text-xs font-medium text-gray-700">{i}</span>
+                </div>
+              ))}
+            </div>
+            <span className="text-sm text-gray-600">
+              +5,000 users trust UNI-PAY for their digital payments
+            </span>
+          </div>
+        </div>
+        <div className="flex-1 relative">
+          <div className="relative">
+            <div className="absolute -left-10 -top-10 w-32 h-32 bg-purple-200 rounded-full filter blur-xl opacity-60"></div>
+            <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-purple-300 rounded-full filter blur-xl opacity-70"></div>
+            <div className="absolute right-10 top-20 w-24 h-24 bg-purple-400 rounded-full filter blur-lg opacity-60"></div>
+            
+            <div className="bg-white backdrop-blur-sm bg-opacity-70 rounded-2xl border border-gray-100 shadow-xl p-6 relative animate-float">
+              <div className="absolute -top-3 -right-3 h-6 w-6 bg-primary rounded-full flex items-center justify-center">
+                <span className="text-white text-xs">$</span>
+              </div>
+              <div className="space-y-6">
+                <div className="flex justify-between items-center">
+                  <h3 className="font-medium">Account Balance</h3>
+                  <span className="text-xs text-gray-500">Updated now</span>
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold">$2,546.87</h2>
+                  <p className="text-green-600 text-sm">+$248.99 this month</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="bg-gray-100 h-2 rounded-full">
+                    <div className="bg-gradient-purple h-full rounded-full" style={{ width: '65%' }}></div>
+                  </div>
+                  <div className="flex justify-between text-xs text-gray-500">
+                    <span>65% of monthly target</span>
+                    <span>$4,000</span>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-purple-50 rounded-lg p-3 text-center">
+                    <p className="text-xs text-gray-600">Payments</p>
+                    <p className="font-medium">12 today</p>
+                  </div>
+                  <div className="bg-purple-50 rounded-lg p-3 text-center">
+                    <p className="text-xs text-gray-600">Transfers</p>
+                    <p className="font-medium">3 today</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
