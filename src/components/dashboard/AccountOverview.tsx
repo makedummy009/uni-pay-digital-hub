@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CreditCard, Wallet, PiggyBank, Building } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface AccountData {
   id: string;
@@ -82,38 +82,34 @@ const AccountOverview: React.FC = () => {
               </div>
               
               <div className="space-y-3">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600 text-sm">Current Balance</span>
-                        <span className={`font-semibold ${account.currentBalance < 0 ? 'text-red-600' : 'text-gray-900'}`}>
-                          ${Math.abs(account.currentBalance).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                          {account.currentBalance < 0 ? ' CR' : ''}
-                        </span>
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p className="w-60 text-sm">Current balance reflects all posted transactions to your account.</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600 text-sm">Current Balance</span>
+                      <span className={`font-semibold ${account.currentBalance < 0 ? 'text-red-600' : 'text-gray-900'}`}>
+                        ${Math.abs(account.currentBalance).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        {account.currentBalance < 0 ? ' CR' : ''}
+                      </span>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="w-60 text-sm">Current balance reflects all posted transactions to your account.</p>
+                  </TooltipContent>
+                </Tooltip>
 
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600 text-sm">Available Balance</span>
-                        <span className="font-semibold">
-                          ${account.availableBalance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                        </span>
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p className="w-60 text-sm">Available balance is the amount currently available for spending or withdrawal, excluding pending transactions.</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600 text-sm">Available Balance</span>
+                      <span className="font-semibold">
+                        ${account.availableBalance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="w-60 text-sm">Available balance is the amount currently available for spending or withdrawal, excluding pending transactions.</p>
+                  </TooltipContent>
+                </Tooltip>
 
                 <div className="flex justify-between">
                   <span className="text-gray-600 text-sm">Account Number</span>
