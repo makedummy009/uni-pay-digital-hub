@@ -4,6 +4,7 @@ import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import StatsCard from '@/components/dashboard/StatsCard';
 import AnalyticsCard from '@/components/dashboard/AnalyticsCard';
 import AccountOverview from '@/components/dashboard/AccountOverview';
+import PaymentsSection from '@/components/dashboard/PaymentsSection';
 import TransactionHistory from '@/components/dashboard/TransactionHistory';
 import TransactionDetails from '@/components/dashboard/TransactionDetails';
 import { Transaction } from '@/components/dashboard/TransactionHistory';
@@ -77,6 +78,9 @@ const Dashboard = () => {
             icon={<PieChart size={20} />}
           />
         </div>
+        
+        {/* Payments Section */}
+        <PaymentsSection />
         
         {/* Account Overview Section */}
         <AccountOverview />

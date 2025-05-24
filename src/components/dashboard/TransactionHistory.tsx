@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ArrowDown, ArrowUp, Calendar, Download, Search, Filter } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -16,6 +15,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { useTransactions } from '@/hooks/useTransactions';
+import { useNavigate } from 'react-router-dom';
 
 export interface Transaction {
   id: string;
@@ -37,6 +37,7 @@ interface TransactionHistoryProps {
 
 const TransactionHistory: React.FC<TransactionHistoryProps> = ({ onViewDetails }) => {
   const { transactions } = useTransactions();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [dateRange, setDateRange] = useState('7days');
   const [transactionType, setTransactionType] = useState('all');
@@ -117,6 +118,15 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ onViewDetails }
             <h2 className="text-2xl font-semibold">Transaction History</h2>
             
             <div className="flex items-center gap-2">
+              <Button 
+                onClick={() => navigate('/transactions')} 
+                variant="outline" 
+                size="sm" 
+                className="flex items-center gap-1"
+              >
+                Go to Transactions
+              </Button>
+              
               <Popover>
                 <PopoverTrigger asChild>
                   <Button variant="outline" size="sm" className="flex items-center gap-1">
