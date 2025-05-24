@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import { useTransactions } from '@/hooks/useTransactions';
 
 export interface Transaction {
   id: string;
@@ -30,111 +31,21 @@ export interface Transaction {
   location?: string;
 }
 
-const mockTransactions: Transaction[] = [
-  {
-    id: 'tx-001',
-    date: '2023-05-19',
-    time: '14:30:25',
-    description: 'Monthly Subscription',
-    merchant: 'Netflix',
-    amount: -14.99,
-    type: 'Subscription',
-    category: 'Entertainment',
-    status: 'Completed',
-    reference: 'REF123456789',
-    location: 'Online'
-  },
-  {
-    id: 'tx-002',
-    date: '2023-05-18',
-    time: '09:45:12',
-    description: 'Transfer to John Smith',
-    merchant: 'John Smith',
-    amount: -150.00,
-    type: 'Transfer',
-    category: 'Personal',
-    status: 'Completed',
-    reference: 'REF987654321',
-  },
-  {
-    id: 'tx-003',
-    date: '2023-05-17',
-    time: '16:22:08',
-    description: 'Online Store Purchase',
-    merchant: 'Amazon',
-    amount: -85.25,
-    type: 'Purchase',
-    category: 'Shopping',
-    status: 'Completed',
-    reference: 'REF567891234',
-    location: 'Online'
-  },
-  {
-    id: 'tx-004',
-    date: '2023-05-16',
-    time: '08:01:45',
-    description: 'Salary Deposit',
-    merchant: 'ABC Corp',
-    amount: 3500.00,
-    type: 'Income',
-    category: 'Salary',
-    status: 'Completed',
-    reference: 'REF432156789',
-  },
-  {
-    id: 'tx-005',
-    date: '2023-05-15',
-    time: '19:15:33',
-    description: 'Electric Bill Payment',
-    merchant: 'Power Co',
-    amount: -120.50,
-    type: 'Payment',
-    category: 'Utilities',
-    status: 'Pending',
-    reference: 'REF321654987',
-  },
-  {
-    id: 'tx-006',
-    date: '2023-05-14',
-    time: '12:30:55',
-    description: 'ATM Withdrawal',
-    merchant: 'ATM #1234',
-    amount: -200.00,
-    type: 'Withdrawal',
-    category: 'Cash',
-    status: 'Completed',
-    reference: 'REF789123456',
-    location: '123 Main St, New York, NY'
-  },
-  {
-    id: 'tx-007',
-    date: '2023-05-13',
-    time: '15:22:18',
-    description: 'Grocery Shopping',
-    merchant: 'Whole Foods',
-    amount: -96.42,
-    type: 'Purchase',
-    category: 'Groceries',
-    status: 'Completed',
-    reference: 'REF654789123',
-    location: '500 Market St, San Francisco, CA'
-  },
-];
-
 interface TransactionHistoryProps {
   onViewDetails: (transaction: Transaction) => void;
 }
 
 const TransactionHistory: React.FC<TransactionHistoryProps> = ({ onViewDetails }) => {
+  const { transactions } = useTransactions();
   const [searchQuery, setSearchQuery] = useState('');
   const [dateRange, setDateRange] = useState('7days');
   const [transactionType, setTransactionType] = useState('all');
   const [amountRange, setAmountRange] = useState([0, 5000]);
-  const [filteredTransactions, setFilteredTransactions] = useState(mockTransactions);
+  const [filteredTransactions, setFilteredTransactions] = useState(transactions);
   
-  // Apply filters function (in a real app, this would make an API call)
+  // Apply filters function
   const applyFilters = () => {
-    let results = [...mockTransactions];
+    let results = [...transactions];
     
     // Apply search query filter
     if (searchQuery) {
@@ -190,12 +101,11 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ onViewDetails }
     setDateRange('7days');
     setTransactionType('all');
     setAmountRange([0, 5000]);
-    setFilteredTransactions(mockTransactions);
+    setFilteredTransactions(transactions);
   };
 
   // Handle export
   const handleExport = (format: string) => {
-    // In a real app, this would trigger a download of the filtered transactions
     alert(`Exporting ${filteredTransactions.length} transactions as ${format}...`);
   };
   
@@ -377,7 +287,7 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ onViewDetails }
         
         {/* Pagination */}
         <div className="p-4 border-t border-gray-200 flex items-center justify-between">
-          <p className="text-sm text-gray-500">Showing {filteredTransactions.length} of {mockTransactions.length} transactions</p>
+          <p className="text-sm text-gray-500">Showing {filteredTransactions.length} of {transactions.length} transactions</p>
           
           <div className="flex items-center space-x-2">
             <Button variant="outline" size="sm" disabled>
