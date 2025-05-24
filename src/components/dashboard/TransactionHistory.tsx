@@ -119,10 +119,12 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ onViewDetails }
             
             <div className="flex items-center gap-2">
               <Button 
-                onClick={() => navigate('/transactions')} 
+                onClick={() => {
+                  navigate('/transactions');
+                }} 
                 variant="outline" 
                 size="sm" 
-                className="flex items-center gap-1"
+                className="flex items-center gap-1 transition-all duration-200 hover:bg-blue-50 hover:border-blue-300"
               >
                 Go to Transactions
               </Button>

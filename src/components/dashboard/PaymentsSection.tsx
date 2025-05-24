@@ -1,12 +1,12 @@
 
 import React, { useState } from 'react';
-import { CreditCard, Building2, Smartphone, Wallet } from 'lucide-react';
+import { CreditCard, Building2, Smartphone, ShoppingBag } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import CreditCardModal from './payments/CreditCardModal';
 import NetBankingModal from './payments/NetBankingModal';
 import UPIModal from './payments/UPIModal';
-import EWalletModal from './payments/EWalletModal';
+import ECommerceModal from './payments/ECommerceModal';
 
 const PaymentsSection = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
@@ -37,10 +37,10 @@ const PaymentsSection = () => {
       iconColor: 'text-purple-600'
     },
     {
-      id: 'ewallet',
-      title: 'E-Commerce Wallets',
-      description: 'Pay with digital wallets',
-      icon: <Wallet size={24} />,
+      id: 'ecommerce',
+      title: 'Shop with E-Commerce Card',
+      description: 'Pay with top e-commerce brands',
+      icon: <ShoppingBag size={24} />,
       bgColor: 'bg-orange-50 hover:bg-orange-100',
       iconColor: 'text-orange-600'
     }
@@ -82,8 +82,8 @@ const PaymentsSection = () => {
         open={activeModal === 'upi'} 
         onClose={() => setActiveModal(null)} 
       />
-      <EWalletModal 
-        open={activeModal === 'ewallet'} 
+      <ECommerceModal 
+        open={activeModal === 'ecommerce'} 
         onClose={() => setActiveModal(null)} 
       />
     </>
