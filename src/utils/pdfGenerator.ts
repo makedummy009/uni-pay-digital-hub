@@ -47,7 +47,12 @@ export const generateTransactionPDF = (transaction: Transaction) => {
   
   // Amount highlight
   doc.setFontSize(14);
-  doc.setTextColor(transaction.amount >= 0 ? 34, 197, 94 : 239, 68, 68); // Green for credit, red for debit
+  // Fix the ternary operator syntax - set color based on transaction type
+  if (transaction.amount >= 0) {
+    doc.setTextColor(34, 197, 94); // Green for credit
+  } else {
+    doc.setTextColor(239, 68, 68); // Red for debit
+  }
   doc.text(
     `${transaction.amount >= 0 ? 'CREDITED' : 'DEBITED'}: ₹${Math.abs(transaction.amount).toLocaleString()}`,
     20,
