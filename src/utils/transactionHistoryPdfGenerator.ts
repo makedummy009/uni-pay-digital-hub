@@ -86,7 +86,7 @@ export const generateTransactionHistoryPDF = (transactions: Transaction[]) => {
     rowData.forEach((data, dataIndex) => {
       // Set color for amount based on transaction type
       if (dataIndex === 5) { // Amount column
-        doc.setTextColor(transaction.amount >= 0 ? 34, 197, 94 : 239, 68, 68);
+        doc.setTextColor(transaction.amount >= 0 ? 34 : 239, transaction.amount >= 0 ? 197 : 68, transaction.amount >= 0 ? 94 : 68);
       } else {
         doc.setTextColor(0, 0, 0);
       }
@@ -134,7 +134,7 @@ export const generateTransactionHistoryPDF = (transactions: Transaction[]) => {
   doc.text(`Total Debits: $${totalDebit.toFixed(2)}`, 80, yPosition + 15);
   doc.text(`Net Amount: $${netAmount.toFixed(2)}`, 135, yPosition + 15);
   
-  doc.setTextColor(netAmount >= 0 ? 34, 197, 94 : 239, 68, 68);
+  doc.setTextColor(netAmount >= 0 ? 34 : 239, netAmount >= 0 ? 197 : 68, netAmount >= 0 ? 94 : 68);
   doc.text(`Status: ${netAmount >= 0 ? 'Positive' : 'Negative'}`, 25, yPosition + 20);
   
   // Footer
