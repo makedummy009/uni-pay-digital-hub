@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, Building2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface NetBankingModalProps {
   open: boolean;
@@ -12,27 +12,29 @@ interface NetBankingModalProps {
 
 const NetBankingModal: React.FC<NetBankingModalProps> = ({ open, onClose }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedBank, setSelectedBank] = useState('');
+  const navigate = useNavigate();
 
   const preferredBanks = [
-    { id: 'sbi', name: 'State Bank of India', logo: '🏦' },
+    { id: 'citi', name: 'Citi Bank', logo: '🏦' },
   ];
 
   const popularBanks = [
-    { id: 'icici', name: 'ICICI Bank', logo: '🏛️' },
-    { id: 'hdfc', name: 'HDFC Bank', logo: '🏪' },
-    { id: 'bom', name: 'Bank of Maharashtra', logo: '🏦' },
-    { id: 'pnb', name: 'Punjab National Bank', logo: '🏛️' },
-    { id: 'axis', name: 'Axis Bank', logo: '🏪' },
+    { id: 'sbi', name: 'State Bank of India', logo: '🏛️' },
+    { id: 'icici', name: 'ICICI Bank', logo: '🏪' },
+    { id: 'hdfc', name: 'HDFC Bank', logo: '🏦' },
+    { id: 'bom', name: 'Bank of Maharashtra', logo: '🏛️' },
+    { id: 'pnb', name: 'Punjab National Bank', logo: '🏪' },
+    { id: 'axis', name: 'Axis Bank', logo: '🏦' },
   ];
 
   const allBanks = [
-    { id: 'andhra', name: 'Andhra Bank', logo: '🏦' },
-    { id: 'bob', name: 'Bank of Baroda', logo: '🏛️' },
-    { id: 'canara', name: 'Canara Bank', logo: '🏪' },
-    { id: 'dena', name: 'Dena Bank', logo: '🏦' },
-    { id: 'indian', name: 'Indian Bank', logo: '🏛️' },
-    { id: 'kotak', name: 'Kotak Mahindra Bank', logo: '🏪' },
+    { id: 'citi', name: 'Citi Bank', logo: '🏦' },
+    { id: 'andhra', name: 'Andhra Bank', logo: '🏛️' },
+    { id: 'bob', name: 'Bank of Baroda', logo: '🏪' },
+    { id: 'canara', name: 'Canara Bank', logo: '🏦' },
+    { id: 'dena', name: 'Dena Bank', logo: '🏛️' },
+    { id: 'indian', name: 'Indian Bank', logo: '🏪' },
+    { id: 'kotak', name: 'Kotak Mahindra Bank', logo: '🏦' },
   ];
 
   const filteredBanks = allBanks.filter(bank => 
@@ -40,9 +42,13 @@ const NetBankingModal: React.FC<NetBankingModalProps> = ({ open, onClose }) => {
   );
 
   const handleBankSelect = (bankId: string, bankName: string) => {
-    setSelectedBank(bankName);
-    alert(`Redirecting to ${bankName} Net Banking... This is a demo implementation.`);
-    onClose();
+    if (bankId === 'citi') {
+      onClose();
+      navigate('/netbanking');
+    } else {
+      alert(`Redirecting to ${bankName} Net Banking... This is a demo implementation.`);
+      onClose();
+    }
   };
 
   return (
@@ -75,11 +81,12 @@ const NetBankingModal: React.FC<NetBankingModalProps> = ({ open, onClose }) => {
                 <Button
                   key={bank.id}
                   variant="outline"
-                  className="justify-start h-auto p-4 hover:bg-blue-50"
+                  className="justify-start h-auto p-4 hover:bg-blue-50 border-blue-200"
                   onClick={() => handleBankSelect(bank.id, bank.name)}
                 >
                   <span className="text-2xl mr-3">{bank.logo}</span>
                   <span className="font-medium">{bank.name}</span>
+                  <span className="ml-auto text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded">Recommended</span>
                 </Button>
               ))}
             </div>
