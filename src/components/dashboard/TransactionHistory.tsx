@@ -16,6 +16,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { useTransactions } from '@/hooks/useTransactions';
 import { useNavigate } from 'react-router-dom';
+import { generateTransactionHistoryPDF } from '@/utils/transactionHistoryPdfGenerator';
 
 export interface Transaction {
   id: string;
@@ -107,7 +108,11 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ onViewDetails }
 
   // Handle export
   const handleExport = (format: string) => {
-    alert(`Exporting ${filteredTransactions.length} transactions as ${format}...`);
+    if (format === 'PDF') {
+      generateTransactionHistoryPDF(filteredTransactions);
+    } else {
+      alert(`Exporting ${filteredTransactions.length} transactions as ${format}...`);
+    }
   };
   
   return (
