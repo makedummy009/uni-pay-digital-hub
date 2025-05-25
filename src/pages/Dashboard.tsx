@@ -8,7 +8,7 @@ import PaymentsSection from '@/components/dashboard/PaymentsSection';
 import TransactionHistory from '@/components/dashboard/TransactionHistory';
 import TransactionDetails from '@/components/dashboard/TransactionDetails';
 import ChatBot from '@/components/dashboard/ChatBot';
-import { Transaction } from '@/components/dashboard/TransactionHistory';
+import { Transaction } from '@/types/transaction';
 import { CreditCard, ShoppingBag, MessageSquare, PieChart, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';

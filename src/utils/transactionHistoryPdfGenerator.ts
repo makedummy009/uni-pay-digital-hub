@@ -1,6 +1,5 @@
-
 import jsPDF from 'jspdf';
-import { Transaction } from '@/components/dashboard/TransactionHistory';
+import { Transaction } from '@/types/transaction';
 
 export const generateTransactionHistoryPDF = (transactions: Transaction[]) => {
   const doc = new jsPDF();

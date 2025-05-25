@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { 
   Drawer,
@@ -14,8 +13,7 @@ import { X, Edit } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-
-import { Transaction } from './TransactionHistory';
+import { Transaction } from '@/types/transaction';
 
 interface TransactionDetailsProps {
   transaction: Transaction | null;
