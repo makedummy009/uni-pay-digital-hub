@@ -51,38 +51,11 @@ const Hero = () => {
             <div className="absolute right-10 top-20 w-24 h-24 bg-purple-400 rounded-full filter blur-lg opacity-60"></div>
             
             <div className="bg-white backdrop-blur-sm bg-opacity-70 rounded-2xl border border-gray-100 shadow-xl p-6 relative animate-float">
-              <div className="absolute -top-3 -right-3 h-6 w-6 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">$</span>
-              </div>
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <h3 className="font-medium">Account Balance</h3>
-                  <span className="text-xs text-gray-500">Updated now</span>
-                </div>
-                <div>
-                  <h2 className="text-3xl font-bold">$2,546.87</h2>
-                  <p className="text-green-600 text-sm">+$248.99 this month</p>
-                </div>
-                <div className="space-y-2">
-                  <div className="bg-gray-100 h-2 rounded-full">
-                    <div className="bg-gradient-purple h-full rounded-full" style={{ width: '65%' }}></div>
-                  </div>
-                  <div className="flex justify-between text-xs text-gray-500">
-                    <span>65% of monthly target</span>
-                    <span>$4,000</span>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-purple-50 rounded-lg p-3 text-center">
-                    <p className="text-xs text-gray-600">Payments</p>
-                    <p className="font-medium">12 today</p>
-                  </div>
-                  <div className="bg-purple-50 rounded-lg p-3 text-center">
-                    <p className="text-xs text-gray-600">Transfers</p>
-                    <p className="font-medium">3 today</p>
-                  </div>
-                </div>
-              </div>
+              <img 
+                src="/lovable-uploads/5e35f3bf-b2e3-45ca-b349-ff5cf2166187.png" 
+                alt="UNI-PAY Digital Platform Illustration" 
+                className="w-full h-auto rounded-lg"
+              />
             </div>
           </div>
         </div>
